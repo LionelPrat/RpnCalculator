@@ -1,16 +1,20 @@
-use crate::engine::parse_split;
+use crate::engine::rpn;
 use std::io;
 use std::io::prelude::*;
 pub mod engine;
 
 fn main() {
-    let sample = "20 5 /";
+    //test("10 20 5 / +");
+    test("4 5 2 MAX");
 
-    println!("Hello, world! {}", sample);
-
-    println!("Hello, world! {}", parse_split(sample)[0]);
     pause();
     return ();
+}
+
+fn test(sample: &str){
+    let result = rpn(sample);
+    println!("Input sample {}", sample);
+    println!("Result {}", result);
 }
 
 fn pause(){
