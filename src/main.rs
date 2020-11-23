@@ -4,8 +4,9 @@ use std::io::prelude::*;
 pub mod engine;
 
 fn main() {
-    //test("10 20 5 / +");
-    test("4 5 2 MAX");
+    test("-9 SQRT");
+
+    test("4 5 MAX 1 2 MAX *");
 
     pause();
     return ();
@@ -14,7 +15,10 @@ fn main() {
 fn test(sample: &str){
     let result = rpn(sample);
     println!("Input sample {}", sample);
-    println!("Result {}", result);
+    match result {
+        Ok(i) =>  println!("Result {}", i),
+        Err(e) => println!("An error occurred {}", e)
+    }
 }
 
 fn pause(){
