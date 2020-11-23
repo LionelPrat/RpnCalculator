@@ -1,18 +1,24 @@
+use crate::engine::parse_split;
 use std::io;
+use std::io::prelude::*;
+pub mod engine;
 
 fn main() {
-    println!("Hello, world!");
+    let sample = "20 5 /";
 
-    loop {
-        let mut input_text = String::new();
-        io::stdin()
-            .read_line(&mut input_text)
-            .expect("failed to read from stdin");
+    println!("Hello, world! {}", sample);
 
-        let trimmed = input_text.trim();
-        match trimmed.parse::<u32>() {
-            Ok(i) => println!("your integer input: {}", i),
-            Err(..) => println!("this was not an integer: {}", trimmed),
-        };
-    }
+    println!("Hello, world! {}", parse_split(sample)[0]);
+    pause();
+    return ();
+}
+
+fn pause(){
+    let mut stdin = io::stdin();
+    let mut stdout = io::stdout();
+
+    write!(stdout, "Press any key to continue...").unwrap();
+    stdout.flush().unwrap();
+
+    let _ = stdin.read(&mut [0u8]).unwrap();
 }
